@@ -32,6 +32,8 @@ export default function Register() {
       .string({ required_error: "Por favor ingrese su contraseña" })
       .min(6),
     goal: z.string({ required_error: "Por favor seleccione una meta" }),
+    exerciseFrequency: z.string({ required_error: "Por favor seleccione la frecuencia de ejercicio" }),
+    waterIntake: z.string({ required_error: "Por favor seleccione la frecuencia de ingesta de agua" }),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -43,7 +45,12 @@ export default function Register() {
     try {
       const userCredential = await doCreateUserWithEmailAndPassword(values.email, values.password);
       const user = userCredential.user;
-      await addUserWithGoal(user.uid, { email: values.email, goal: values.goal });
+      await addUserWithGoal(user.uid, { 
+        email: values.email, 
+        goal: values.goal,
+        exerciseFrequency: values.exerciseFrequency,
+        waterIntake: values.waterIntake
+      });
       toast.success("Usuario creado correctamente");
     } catch (error) {
       console.log(error);
@@ -110,6 +117,57 @@ export default function Register() {
                           <SelectItem value="perder_peso">Perder Peso</SelectItem>
                           <SelectItem value="ganar_musculo">Ganar Músculo</SelectItem>
                           <SelectItem value="mantenerse">Mantenerse</SelectItem>
+                          <SelectItem value="ganar_peso">Ganar Peso</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="exerciseFrequency"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Frecuencia de Ejercicio</FormLabel>
+                    <FormControl>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Seleccione la frecuencia de ejercicio" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="mucho">Hace mucho ejercicio (4-6 días)</SelectItem>
+                          <SelectItem value="poco">Hace poco ejercicio (2-3 días)</SelectItem>
+                          <SelectItem value="nada">No hace ejercicio</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="waterIntake"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Frecuencia de Ingesta de Agua</FormLabel>
+                    <FormControl>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Seleccione la frecuencia de ingesta de agua" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="mucha">Mucha (más de 8 vasos)</SelectItem>
+                          <SelectItem value="regular">Regular (4-8 vasos)</SelectItem>
+                          <SelectItem value="poca">Poca (menos de 4 vasos)</SelectItem>
                         </SelectContent>
                       </Select>
                     </FormControl>
@@ -131,4 +189,3 @@ export default function Register() {
     </>
   );
 }
-

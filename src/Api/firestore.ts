@@ -6,6 +6,8 @@ const db = getFirestore(app);
 interface UserData {
   email: string;
   goal: string;
+  exerciseFrequency: string;
+  waterIntake: string;
 }
 
 export const addUserWithGoal = async (uid: string, userData: UserData) => {
