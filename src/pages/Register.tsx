@@ -1,0 +1,134 @@
+import { doCreateUserWithEmailAndPassword } from "@/Api/auth";
+import Navbar_Home from "../components/navbarMain";
+import { Toaster, toast } from "sonner";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+// Imports del formulario
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { addUserWithGoal } from "@/Api/firestore"; 
+
+export default function Register() {
+  const formSchema = z.object({
+    email: z.string({ required_error: "Por favor ingrese su correo" }).email(),
+    password: z
+      .string({ required_error: "Por favor ingrese su contraseña" })
+      .min(6),
+    goal: z.string({ required_error: "Por favor seleccione una meta" }),
+  });
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  });
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log(values);
+    try {
+      const userCredential = await doCreateUserWithEmailAndPassword(values.email, values.password);
+      const user = userCredential.user;
+      await addUserWithGoal(user.uid, { email: values.email, goal: values.goal });
+      toast.success("Usuario creado correctamente");
+    } catch (error) {
+      console.log(error);
+      toast.error("Error al crear usuario");
+    }
+  };
+
+  return (
+    <>
+      <Navbar_Home />
+      <div className="mt-16 flex justify-center items-center">
+        <Card className="w-[350px] px-6 py-5">
+          <h2 className="text-center font-semibold text-xl text-blue-500">Registro</h2>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Email"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Contraseña</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Contraseña"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="goal"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Meta</FormLabel>
+                    <FormControl>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Seleccione una meta" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="perder_peso">Perder Peso</SelectItem>
+                          <SelectItem value="ganar_musculo">Ganar Músculo</SelectItem>
+                          <SelectItem value="mantenerse">Mantenerse</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button
+                className="mt-8 bg-gradient-to-r from-sky-500 to-indigo-500"
+                type="submit"
+              >
+                Registrarse
+              </Button>
+            </form>
+          </Form>
+        </Card>
+      </div>
+      <Toaster position="top-center" />
+    </>
+  );
+}
+
