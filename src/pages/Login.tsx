@@ -16,6 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+
 export default function Login() {
   const formSchema = z.object({
     email: z.string({ required_error: "Por favor ingrese su correo" }).email(),
@@ -31,20 +32,17 @@ export default function Login() {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
     try {
-    
       const firebase = await doSignInWithEmailAndPassword(values.email, values.password);
       console.log(firebase);
       if (firebase) {
         window.location.href = "/Dasboard";
-      }else{
+      } else {
         toast.error("Error al iniciar sesion");
       }
     } catch (error) {
       console.log(error);
       toast.error("Error al iniciar sesion");
     }
-
-   
   };
 
   return (
@@ -92,7 +90,6 @@ export default function Login() {
               <Button
                 className="mt-8 bg-gradient-to-r from-sky-500 to-indigo-500"
                 type="submit"
-
               >
                 Iniciar Sesion
               </Button>
@@ -100,15 +97,8 @@ export default function Login() {
           </Form>
         </Card>
       </div>
-      <Toaster position="top-center"
-        toastOptions={{
-          style: {
-            background: "red",
-            color: "white"
-          }
-        }}
-      
-      />
+      <Toaster position="top-center" />
     </>
   );
 }
+

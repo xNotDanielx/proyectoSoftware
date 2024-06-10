@@ -47,6 +47,7 @@ export default function Register() {
       const user = userCredential.user;
       await addUserWithGoal(user.uid, { 
         email: values.email, 
+        password: values.password,
         goal: values.goal,
         exerciseFrequency: values.exerciseFrequency,
         waterIntake: values.waterIntake
