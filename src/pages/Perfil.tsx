@@ -6,31 +6,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { getUserData, updateUserProfile } from "@/Api/firestore";
 import { Toaster, toast } from "sonner";
 import { auth } from "@/Api/firebase";
+import Recetas from "./Recetas";
 
 const Perfil = () => {
   const [loading, setLoading] = useState(true);
-
+  const [selectedGoal, setSelectedGoal] = useState<string>('');
   const formSchema = z.object({
     email: z.string().email({ message: "Por favor ingrese su correo" }),
     password: z.string().min(6, { message: "Por favor ingrese su contraseña" }),
+    username: z.string().min(3, { message: "Por favor ingrese su nombre de usuario" }),
     goal: z.string({ message: "Por favor seleccione una meta" }),
     exerciseFrequency: z.string({
       message: "Por favor seleccione la frecuencia de ejercicio",
@@ -45,6 +34,7 @@ const Perfil = () => {
     defaultValues: {
       email: "",
       password: "",
+      username: "",
       goal: "",
       exerciseFrequency: "",
       waterIntake: "",
@@ -81,6 +71,7 @@ const Perfil = () => {
         await updateUserProfile(user.uid, {
           email: values.email,
           password: values.password,
+          username: values.username,
           goal: values.goal,
           exerciseFrequency: values.exerciseFrequency,
           waterIntake: values.waterIntake,
@@ -128,11 +119,20 @@ const Perfil = () => {
                     <FormItem>
                       <FormLabel>Contraseña</FormLabel>
                       <FormControl>
-                        <Input
-                          type="password"
-                          placeholder="Contraseña"
-                          {...field}
-                        />
+                        <Input type="password" placeholder="Contraseña" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Nombre de Usuario</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Nombre de Usuario" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -145,26 +145,18 @@ const Perfil = () => {
                     <FormItem>
                       <FormLabel>Meta</FormLabel>
                       <FormControl>
-                        <Select
-                          onValueChange={field.onChange}
-                          value={field.value}
-                        >
+                        <Select onValueChange={(value) => {
+                          field.onChange(value);
+                          setSelectedGoal(value);
+                        }} value={field.value}>
                           <SelectTrigger>
                             <SelectValue placeholder="Seleccione una meta" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="perder_peso">
-                              Perder Peso
-                            </SelectItem>
-                            <SelectItem value="ganar_musculo">
-                              Ganar Músculo
-                            </SelectItem>
-                            <SelectItem value="mantenerse">
-                              Mantenerse
-                            </SelectItem>
-                            <SelectItem value="ganar_peso">
-                              Ganar Peso
-                            </SelectItem>
+                            <SelectItem value="perder_peso">Perder Peso</SelectItem>
+                            <SelectItem value="ganar_musculo">Ganar Músculo</SelectItem>
+                            <SelectItem value="mantenerse">Mantenerse</SelectItem>
+                            <SelectItem value="ganar_peso">Ganar Peso</SelectItem>
                           </SelectContent>
                         </Select>
                       </FormControl>
@@ -179,23 +171,14 @@ const Perfil = () => {
                     <FormItem>
                       <FormLabel>Frecuencia de Ejercicio</FormLabel>
                       <FormControl>
-                        <Select
-                          onValueChange={field.onChange}
-                          value={field.value}
-                        >
+                        <Select onValueChange={field.onChange} value={field.value}>
                           <SelectTrigger>
                             <SelectValue placeholder="Seleccione la frecuencia de ejercicio" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="mucho">
-                              Hace mucho ejercicio (4-6 días)
-                            </SelectItem>
-                            <SelectItem value="poco">
-                              Hace poco ejercicio (2-3 días)
-                            </SelectItem>
-                            <SelectItem value="nada">
-                              No hace ejercicio
-                            </SelectItem>
+                            <SelectItem value="mucho">Hace mucho ejercicio (4-6 días)</SelectItem>
+                            <SelectItem value="poco">Hace poco ejercicio (2-3 días)</SelectItem>
+                            <SelectItem value="nada">No hace ejercicio</SelectItem>
                           </SelectContent>
                         </Select>
                       </FormControl>
@@ -210,23 +193,14 @@ const Perfil = () => {
                     <FormItem>
                       <FormLabel>Frecuencia de Ingesta de Agua</FormLabel>
                       <FormControl>
-                        <Select
-                          onValueChange={field.onChange}
-                          value={field.value}
-                        >
+                        <Select onValueChange={field.onChange} value={field.value}>
                           <SelectTrigger>
                             <SelectValue placeholder="Seleccione la frecuencia de ingesta de agua" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="mucha">
-                              Mucha (más de 8 vasos)
-                            </SelectItem>
-                            <SelectItem value="regular">
-                              Regular (4-8 vasos)
-                            </SelectItem>
-                            <SelectItem value="poca">
-                              Poca (menos de 4 vasos)
-                            </SelectItem>
+                            <SelectItem value="mucha">Mucha (más de 8 vasos)</SelectItem>
+                            <SelectItem value="regular">Regular (4-8 vasos)</SelectItem>
+                            <SelectItem value="poca">Poca (menos de 4 vasos)</SelectItem>
                           </SelectContent>
                         </Select>
                       </FormControl>
@@ -251,6 +225,5 @@ const Perfil = () => {
 };
 
 export default Perfil;
-
 
 

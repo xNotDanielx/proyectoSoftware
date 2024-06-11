@@ -9,7 +9,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-// Imports del formulario
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -31,6 +30,7 @@ export default function Register() {
     password: z
       .string({ required_error: "Por favor ingrese su contraseña" })
       .min(6),
+    username: z.string({ required_error: "Por favor ingrese su nombre de usuario" }),
     goal: z.string({ required_error: "Por favor seleccione una meta" }),
     exerciseFrequency: z.string({ required_error: "Por favor seleccione la frecuencia de ejercicio" }),
     waterIntake: z.string({ required_error: "Por favor seleccione la frecuencia de ingesta de agua" }),
@@ -48,6 +48,7 @@ export default function Register() {
       await addUserWithGoal(user.uid, { 
         email: values.email, 
         password: values.password,
+        username: values.username,
         goal: values.goal,
         exerciseFrequency: values.exerciseFrequency,
         waterIntake: values.waterIntake
@@ -74,10 +75,7 @@ export default function Register() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Email"
-                        {...field}
-                      />
+                      <Input placeholder="Email" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -90,11 +88,20 @@ export default function Register() {
                   <FormItem>
                     <FormLabel>Contraseña</FormLabel>
                     <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="Contraseña"
-                        {...field}
-                      />
+                      <Input type="password" placeholder="Contraseña" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Nombre de Usuario</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Nombre de Usuario" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -107,10 +114,7 @@ export default function Register() {
                   <FormItem>
                     <FormLabel>Meta</FormLabel>
                     <FormControl>
-                      <Select
-                        onValueChange={field.onChange}
-                        value={field.value}
-                      >
+                      <Select onValueChange={field.onChange} value={field.value}>
                         <SelectTrigger>
                           <SelectValue placeholder="Seleccione una meta" />
                         </SelectTrigger>
@@ -133,10 +137,7 @@ export default function Register() {
                   <FormItem>
                     <FormLabel>Frecuencia de Ejercicio</FormLabel>
                     <FormControl>
-                      <Select
-                        onValueChange={field.onChange}
-                        value={field.value}
-                      >
+                      <Select onValueChange={field.onChange} value={field.value}>
                         <SelectTrigger>
                           <SelectValue placeholder="Seleccione la frecuencia de ejercicio" />
                         </SelectTrigger>
@@ -158,10 +159,7 @@ export default function Register() {
                   <FormItem>
                     <FormLabel>Frecuencia de Ingesta de Agua</FormLabel>
                     <FormControl>
-                      <Select
-                        onValueChange={field.onChange}
-                        value={field.value}
-                      >
+                      <Select onValueChange={field.onChange} value={field.value}>
                         <SelectTrigger>
                           <SelectValue placeholder="Seleccione la frecuencia de ingesta de agua" />
                         </SelectTrigger>
