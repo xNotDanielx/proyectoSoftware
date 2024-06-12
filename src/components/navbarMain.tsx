@@ -18,8 +18,8 @@ export default function Navbar_Home() {
         </div>
       </div>
       <div className="flex gap-3">
-        <NavLink className={"bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg py-1 px-3 text-white"} to={"/Login"}>Login</NavLink>
-        <NavLink className={"bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg py-1 px-3 text-white"} to={"/Register"}>Register</NavLink>
+        <NavLink className={"bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg py-1 px-3 text-white"} to={"/Login"}>Iniciar sesion</NavLink>
+        <NavLink className={"bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg py-1 px-3 text-white"} to={"/Register"}>Registrar</NavLink>
       </div>
     </header>
   );
