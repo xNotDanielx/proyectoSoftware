@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import logo2 from "../assets/Group 3 (1).png";
-import dasboard from "../assets/dashboard.png";
+import estadoEmocional from "../assets/pensamiento-positivo.png"
 import ejericio from "../assets/ejercicio.png";
 import agua from "../assets/agua.png";
 import recipes from "../assets/recipes.png";
@@ -30,9 +30,9 @@ export default function Sidebar() {
       <div className="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
         <ul className="space-y-2">
           <li>
-            <NavLink to="/dasboard" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-blue-500 dark:hover:bg-gray-700">
-              <img src={dasboard} alt="" className="w-6 h-6"/>
-              <span className="ml-3">Dashboard</span>
+            <NavLink to="/estadoemocional" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-blue-500 dark:hover:bg-gray-700">
+              <img src={estadoEmocional} alt="" className="w-6 h-6"/>
+              <span className="ml-3">Estado Emocional</span>
             </NavLink>
           </li>
           <li>

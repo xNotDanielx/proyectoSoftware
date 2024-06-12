@@ -2,7 +2,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Dasboard from "./pages/Dasboard";
+import EstadoEmocional from "./pages/EstadoEmocional";
 import Agua from "./pages/Agua";
 import Recetas from "./pages/Recetas";
 import Perfil from "./pages/Perfil";
@@ -17,7 +17,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/Login" element={<Login />}></Route>
           <Route path="/Register" element={<Register />}></Route>
-          <Route path="/Dasboard" element={<Dasboard />}></Route>
+          <Route path="/EstadoEmocional" element={<EstadoEmocional />}></Route>
           <Route path="/Agua" element={<Agua />}></Route>
           <Route path="/Recetas" element={<Recetas />}></Route>
           <Route path="/Perfil" element={<Perfil />}></Route>

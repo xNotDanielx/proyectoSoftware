@@ -35,7 +35,7 @@ export default function Login() {
       const firebase = await doSignInWithEmailAndPassword(values.email, values.password);
       console.log(firebase);
       if (firebase) {
-        window.location.href = "/Dasboard";
+        window.location.href = "/Recetas";
       } else {
         toast.error("Error al iniciar sesion");
       }
