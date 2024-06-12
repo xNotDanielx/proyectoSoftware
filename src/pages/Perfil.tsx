@@ -11,11 +11,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { getUserData, updateUserProfile } from "@/Api/firestore";
 import { Toaster, toast } from "sonner";
 import { auth } from "@/Api/firebase";
-import Recetas from "./Recetas";
 
 const Perfil = () => {
   const [loading, setLoading] = useState(true);
-  const [selectedGoal, setSelectedGoal] = useState<string>('');
   const formSchema = z.object({
     email: z.string().email({ message: "Por favor ingrese su correo" }),
     password: z.string().min(6, { message: "Por favor ingrese su contraseña" }),
@@ -147,7 +145,6 @@ const Perfil = () => {
                       <FormControl>
                         <Select onValueChange={(value) => {
                           field.onChange(value);
-                          setSelectedGoal(value);
                         }} value={field.value}>
                           <SelectTrigger>
                             <SelectValue placeholder="Seleccione una meta" />
