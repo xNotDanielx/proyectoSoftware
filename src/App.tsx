@@ -6,8 +6,9 @@ import Dasboard from "./pages/Dasboard";
 import Agua from "./pages/Agua";
 import Recetas from "./pages/Recetas";
 import Perfil from "./pages/Perfil";
-import Seguimiento from "./pages/Ejercicio";
+import Ejercicio from "./pages/Ejercicio";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Sueño from "./pages/Sueño";
 function App() {
   return (
     <>
@@ -20,7 +21,8 @@ function App() {
           <Route path="/Agua" element={<Agua />}></Route>
           <Route path="/Recetas" element={<Recetas />}></Route>
           <Route path="/Perfil" element={<Perfil />}></Route>
-          <Route path="/Seguimiento" element={<Seguimiento/>}></Route>
+          <Route path="/Ejercicio" element={<Ejercicio/>}></Route>
+          <Route path="/Sueño" element={<Sueño/>}></Route>
         </Routes>
       </BrowserRouter>
     </>
