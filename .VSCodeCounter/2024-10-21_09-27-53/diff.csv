@@ -1,0 +1,29 @@
+"filename", "language", "TypeScript", "TypeScript JSX", "CSS", "XML", "comment", "blank", "total"
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\Api\auth.ts", "TypeScript", 51, 0, 0, 0, 5, 9, 65
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\Api\firebase.ts", "TypeScript", 15, 0, 0, 0, 3, 4, 22
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\Api\firestore.ts", "TypeScript", 58, 0, 0, 0, 3, 7, 68
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\App.css", "CSS", 0, 0, 0, 0, 0, 1, 1
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\App.tsx", "TypeScript JSX", 0, 31, 0, 0, 0, 2, 33
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\assets\react.svg", "XML", 0, 0, 0, 1, 0, 0, 1
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\cardProximamente.tsx", "TypeScript JSX", 0, 23, 0, 0, 0, 0, 23
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\carouselFood.tsx", "TypeScript JSX", 0, 46, 0, 0, 1, 3, 50
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\navbarMain.tsx", "TypeScript JSX", 0, 26, 0, 0, 0, 1, 27
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\navbarMenu.tsx", "TypeScript JSX", 0, 75, 0, 0, 0, 4, 79
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\ui\accordion.tsx", "TypeScript JSX", 0, 49, 0, 0, 0, 8, 57
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\ui\button.tsx", "TypeScript JSX", 0, 51, 0, 0, 0, 6, 57
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\ui\card.tsx", "TypeScript JSX", 0, 71, 0, 0, 0, 9, 80
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\ui\carousel.tsx", "TypeScript JSX", 0, 231, 0, 0, 0, 30, 261
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\ui\form.tsx", "TypeScript JSX", 0, 152, 0, 0, 0, 25, 177
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\ui\input.tsx", "TypeScript JSX", 0, 21, 0, 0, 0, 5, 26
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\ui\label.tsx", "TypeScript JSX", 0, 20, 0, 0, 0, 5, 25
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\ui\navigation-menu.tsx", "TypeScript JSX", 0, 117, 0, 0, 0, 12, 129
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\ui\select.tsx", "TypeScript JSX", 0, 145, 0, 0, 0, 14, 159
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\ui\table.tsx", "TypeScript JSX", 0, 107, 0, 0, 0, 11, 118
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\ui\toast.tsx", "TypeScript JSX", 0, 115, 0, 0, 0, 13, 128
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\ui\toaster.tsx", "TypeScript JSX", 0, 31, 0, 0, 0, 3, 34
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\components\ui\use-toast.ts", "TypeScript", 159, 0, 0, 0, 3, 31, 193
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\index.css", "CSS", 0, 0, 3, 0, 0, 1, 4
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\lib\utils.ts", "TypeScript", 5, 0, 0, 0, 0, 2, 7
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\main.tsx", "TypeScript JSX", 0, 9, 0, 0, 0, 3, 12
+"c:\Users\otero\OneDrive\Imágenes\proyectoSoftware\src\vite-env.d.ts", "TypeScript", 0, 0, 0, 0, 1, 1, 2
+"Total", "-", 288, 1320, 3, 1, 16, 210, 1838

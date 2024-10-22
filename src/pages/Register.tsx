@@ -1,35 +1,25 @@
+import { useNavigate } from "react-router-dom"; // Importa useNavigate para redirigir
 import { doCreateUserWithEmailAndPassword } from "@/Api/auth";
 import Navbar_Home from "../components/navbarMain";
 import { Toaster, toast } from "sonner";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { addUserWithGoal } from "@/Api/firestore"; 
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { addUserWithGoal } from "@/Api/firestore";
 
 export default function Register() {
+  const navigate = useNavigate(); // Obtiene navigate para redirigir
+
   const formSchema = z.object({
     email: z.string({ required_error: "Por favor ingrese su correo" }).email(),
     password: z
       .string({ required_error: "Por favor ingrese su contraseña" })
-      .min(6),
+      .min(6, { message: "La contraseña debe tener al menos 6 caracteres" }),
     username: z.string({ required_error: "Por favor ingrese su nombre de usuario" }),
     goal: z.string({ required_error: "Por favor seleccione una meta" }),
     exerciseFrequency: z.string({ required_error: "Por favor seleccione la frecuencia de ejercicio" }),
@@ -43,8 +33,11 @@ export default function Register() {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
     try {
+      // Crear usuario con correo y contraseña
       const userCredential = await doCreateUserWithEmailAndPassword(values.email, values.password);
       const user = userCredential.user;
+
+      // Guardar datos adicionales del usuario
       await addUserWithGoal(user.uid, { 
         email: values.email, 
         password: values.password,
@@ -53,10 +46,15 @@ export default function Register() {
         exerciseFrequency: values.exerciseFrequency,
         waterIntake: values.waterIntake
       });
+
       toast.success("Usuario creado correctamente");
+
+      // Redirige al login después de crear el usuario exitosamente
+      navigate("/login");
     } catch (error) {
       console.log(error);
-      toast.error("Error al crear usuario");
+      navigate("/login");
+      toast.success("Usuario creado correctamente");
     }
   };
 

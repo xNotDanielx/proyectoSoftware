@@ -67,7 +67,7 @@ type RutinaGuardada = {
   rutina: Rutina[];
 };
 
-// Ejercicios predefinidos
+
 const rutinaEjercicios: NivelEjercicio[] = [
   {
     id: "1",
